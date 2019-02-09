@@ -1,94 +1,75 @@
 import React, { Component } from 'react';
 import { ReactMic } from 'react-mic';
+import "babel-polyfill";
+import $ from "jquery";
 
-export class Example extends React.Component {
+import ReactDOM from "react-dom";
+import Clipboard from "clipboard";
+
+import { Dropdown, Button, NavItem, Modal, Row, Col, Input } from "react-materialize";
+
+export class UserInput extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      record: false
-    }
+    this.state = {};
+    this.state.formData = new FormData();
+   }
+   onChange = (e, val) => { //defines a function, onChange which takes an event and value and takes value and stores it in something
+     this.sate.formData.set('Text', 'Hello World')
+     this.forceUpdate();
+   }
+   onChangeField = field => {
+       let onChangeSpecific = (e) => {
+         let value = e.target.value;
+         this.state.formData.set(field, value);
+       }
+       return onChangeSpecific
+   }
 
+  getText = (e) => { //get the input text
+    let text = e.target.value;
+    this.state.text = text;
+    console.log('input text', text);
+    this.state.formData.set('Text', this.state.text);
   }
+  /*sendTextInfo = () => {
+    fetch('/text', { //http put request
+      method: 'PUT',
+      body: this.state.formData
+    })
+    .then(response => response.json()) //get back a json
+    .catch(error => console.error(error)) //error handling
+    //.then(response => {
+      //this.state.laTeX = response.latex;
+      //console.log(this.state.laTeX);
+      //console.log(this.state);
+      this.forceUpdate();
+    }); //if the json is valid*/
+  //}
 
-  startRecording = () => {
-    this.setState({
-      record: true
-    });
-  }
-
-  stopRecording = () => {
-    this.setState({
-      record: false
-    });
-  }
-
-  onData(recordedBlob) {
-    console.log('chunk of real-time data is: ', recordedBlob);
-  }
-
-  onStop(recordedBlob) {
-    console.log('recordedBlob is: ', recordedBlob);
-  }
 
   render() {
     return (
       <div>
-        <ReactMic
-          record={this.state.record}
-          className="sound-wave"
-          onStop={this.onStop}
-          onData={this.onData}
-          strokeColor="#000000"
-          backgroundColor="#FF4081" />
-        <button onClick={this.startRecording} type="button">Start</button>
-        <button onClick={this.stopRecording} type="button">Stop</button>
+        <Row>
+        <Col s={1}>Please input your Text:</Col>
+        <Col s={5}><Input placeholder="Text" defaultValue='' s={6} onChange ={this.onChangeField('Text')}/></Col>
+        </Row>
       </div>
     );
   }
 }
 
-class RecordButton extends React.Component {
-
-  constructor(props){
-    super(props);
-    this.state = {isRecording: false, text: "start"};
-
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    if (this.state.isRecording) {
-      this.setState(state => ({
-        isRecording: false,
-        text: "start"
-      }));
-    } else {
-      this.setState(state => ({
-        isRecording: true,
-        text: "stop"
-      }));
-    }
-
-  }
-
-  render() {
-    return (
-      <button onClick={this.handleClick}>
-        Press to {this.state.text} recording.
-      </button>
-    );
-  }
-}
-
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <RecordButton />
-        <Example />
-      </div>
-    );
-  }
-}
-
-export default App;
+$(document).ready(() => {
+  ReactDOM.render(
+    <div>
+      <h1 className='title'>focus</h1>
+      <UserInput />
+      <footer className = 'footer'> By Hannah He </footer>
+    </div>,
+      //<Hannah number={1} />
+      //<Hannah number={2} />
+    //</div>,
+    document.getElementById("root")
+  );
+});
