@@ -7,6 +7,7 @@ export class Example extends React.Component {
     this.state = {
       record: false
     }
+    this.onStop = this.onStop.bind(this);
 
   }
 
@@ -26,8 +27,37 @@ export class Example extends React.Component {
     console.log('chunk of real-time data is: ', recordedBlob);
   }
 
+
+  sendAudio(recordedBlob) {
+    var fd = new FormData();
+    fd.append('audio', recordedBlob, "blob"); //recordedBlob, "blob"
+    console.log("this is sent to the put request: ", recordedBlob);
+    fetch('/processaudio', { //http put request
+      method: 'PUT',
+      body: fd
+    })
+    .then(response => response.json()) //get back a json
+    .catch(error => console.error(error)) //error handling
+    .then(response => {
+      console.log(response.category)
+      this.forceUpdate();
+    }); //if the json is valid
+  }
+
   onStop(recordedBlob) {
     console.log('recordedBlob is: ', recordedBlob);
+    this.sendAudio(recordedBlob);
+    /*this.state.formData.set('audio', recordedBlob);
+    fetch('/processaudio', { //http put request
+      method: 'PUT',
+      body: this.state.formData
+    })
+    .then(response => response.json()) //get back a json
+    .catch(error => console.error(error)) //error handling
+    .then(response => {
+      console.log(response.category)
+      this.forceUpdate();
+    }); //if the json is valid*/
   }
 
   render() {
