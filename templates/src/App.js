@@ -10,6 +10,7 @@ import "babel-polyfill";
 import $ from "jquery";
 
 
+
 class UserInput extends React.Component {
   constructor(props) {
     super(props);
@@ -119,9 +120,10 @@ class App extends React.Component {
     }
   }
   handleChange = (selectedOption) => {
-    this.setState(state => ({
-      selectedOption: selectedOption.label
-    }));
+    this.setState({ selectedOption });
+    // this.setState(state => ({
+    //   selectedOption: selectedOption.label
+    // }));
     var option = new FormData();
     option.set('cat', selectedOption.label);
     fetch('/cat', { //http put request
@@ -181,13 +183,10 @@ class App extends React.Component {
     return (
 
       <div className="App">
-        <div>
-          <Sound url="../../static/audio/beepboop.mp3" playStatus={Sound.status.PLAYING} />
-        </div>
         <img src={'../../static/img/1.png'}/>
         <Row>
           <ul>
-          <li className = "topicText">What do you want to talk about?</li>
+            <li className = "topicText">What do you want to talk about?</li>
           </ul>
           <Select value={selectedOption}
             onChange={this.handleChange}
@@ -195,7 +194,7 @@ class App extends React.Component {
         </Row>
         <div>
           {selectedOption != null ?
-            <RecordButton />:"" }
+            "You are now being recorded!":"" }
         </div>
         <p>You're {this.state.onTopic ? "on" : "off"} topic.</p>
         <Button onClick={this.playBeep}> Sweet Toonz </Button>
