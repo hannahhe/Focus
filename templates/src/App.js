@@ -169,13 +169,24 @@ class App extends React.Component {
       console.log("There was an error", err); //WHAT HAPPENS WHEN YOU'RE MICLESS?
     });
   }
+
+  playBeep = () => {
+    var audio = new Audio('../../static/audio/beepboop.mp3');
+    audio.play();
+  }
+
   render() {
     const { selectedOption, onTopic } = this.state;
     this.state.onTopic = "on";
     return (
+
       <div className="App">
+        <div>
+          <Sound url="../../static/audio/beepboop.mp3" playStatus={Sound.status.PLAYING} />
+        </div>
         <img src={'../../static/img/1.png'}/>
-        <Row><ul>
+        <Row>
+          <ul>
           <li className = "topicText">What do you want to talk about?</li>
           </ul>
           <Select value={selectedOption}
@@ -187,6 +198,7 @@ class App extends React.Component {
             <RecordButton />:"" }
         </div>
         <p>You're {this.state.onTopic ? "on" : "off"} topic.</p>
+        <Button onClick={this.playBeep}> Sweet Toonz </Button>
       </div>
     );
   }
