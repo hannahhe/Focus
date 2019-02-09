@@ -160,20 +160,7 @@ class App extends React.Component {
         .then(response => response.json())
         .catch(error => console.error(error))
         .then(response => {
-          console.log(response);
-          if (Object.keys(response).length != 0) {
-            console.log('hi');
-            var category = this.state.selectedOption;
-            var x = !(response.offT);
-            this.state.x = x;
-            console.log("x is ", x)
-            this.setState({
-              selectedOption: category,
-              onTopic: this.state.x
-            }, () => {console.log(this.state); this.forceUpdate();});
-            console.log(this.state)
-            this.forceUpdate();
-          }
+          this.state.onTopic = response.offT;
         })
         .catch();
       };
@@ -192,7 +179,7 @@ class App extends React.Component {
 
   render() {
     const { selectedOption, onTopic } = this.state;
-    this.state.onTopic = true;
+    this.state.onTopic = "on";
     return (
 
       <div className="App">
@@ -209,9 +196,7 @@ class App extends React.Component {
           {selectedOption != null ?
             "You are now being recorded!":"" }
         </div>
-	<Row className="smallText">
-	  {this.state.x ? "You're on topic" : "You're off topic"}
-	</Row>
+        <p>You're {this.state.onTopic ? "on" : "off"} topic.</p>
         <Button onClick={this.playBeep}> Sweet Toonz </Button>
       </div>
     );

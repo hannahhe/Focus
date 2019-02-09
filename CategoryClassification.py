@@ -19,12 +19,12 @@ def isOffTopic(idealTopic, text):
     categories = client.classify_text(document).categories
     d = dict()
     for category in categories:
-        print(u'=' * 20)
-        print(u'{:<16}: {}'.format('name', category.name))
-        print(u'{:<16}: {}'.format('confidence', category.confidence))
         d[category.name] = category.confidence
         if category.name == idealTopic:
             return False
+        print(u'=' * 20)
+        print(u'{:<16}: {}'.format('name', category.name))
+        print(u'{:<16}: {}'.format('confidence', category.confidence))
     return True
     #print(d)
     #cut = dict((k,v) for k, v in d.items() if v > 0.8)
