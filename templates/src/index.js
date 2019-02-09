@@ -1,8 +1,13 @@
 //import "babel-polyfill";
+import "babel-polyfill";
 import $ from "jquery";
 
-import React from 'react';
+import React from "react";
 import ReactDOM from "react-dom";
+import Clipboard from "clipboard";
+
+import { Dropdown, Button, NavItem, Modal, Row, Col, Input } from "react-materialize";
+
 import App from './App';
 //import Clipboard from "clipboard";
 
