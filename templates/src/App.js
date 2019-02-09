@@ -3,15 +3,8 @@ import { ReactMic } from 'react-mic';
 //import Header from "../../static/img/1.png";
 import Select from 'react-select';
 import {Row, Col, Button} from "react-materialize";
+import { scaryAnimals } from "./categories";
 
-const scaryAnimals = [
-  { label: "Alligators", value: 1 },
-  { label: "Crocodiles", value: 2 },
-  { label: "Sharks", value: 3 },
-  { label: "Small crocodiles", value: 4 },
-  { label: "Smallest crocodiles", value: 5 },
-  { label: "Snakes", value: 6 },
-];
 /*
 export class Example extends React.Component {
   constructor(props) {
