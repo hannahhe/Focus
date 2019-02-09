@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { ReactMic } from 'react-mic';
+//import Header from "../../static/img/1.png";
+import Select from 'react-select';
+import {Row, Col, Button} from "react-materialize";
+import { scaryAnimals } from "./categories";
 
+/*
 export class Example extends React.Component {
   constructor(props) {
     super(props);
@@ -46,7 +51,7 @@ export class Example extends React.Component {
     );
   }
 }
-
+*/
 class RecordButton extends React.Component {
 
   constructor(props){
@@ -80,12 +85,37 @@ class RecordButton extends React.Component {
   }
 }
 
+
+
+
 class App extends Component {
+  state = {
+    selectedOption: null,
+  }
+  handleChange = (selectedOption) => {
+    this.setState({ selectedOption });
+    console.log(`Option selected:`, selectedOption.label);
+
+  }
   render() {
+    const { selectedOption } = this.state;
     return (
       <div className="App">
-        <RecordButton />
-        <Example />
+        <img src={'../../static/img/1.png'}/>
+        <Row>
+
+
+          <ul>
+          <li class = "topicText">What do you want to talk about?</li>
+          </ul>
+          <Select value={selectedOption}
+            onChange={this.handleChange}
+            options={scaryAnimals}/>
+        </Row>
+        <div>
+          {selectedOption != null ?
+            <RecordButton />:"" }
+        </div>
       </div>
     );
   }
