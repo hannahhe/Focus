@@ -59,4 +59,4 @@ def speechdata():
             print("offTopic", offTopic)
             runningtext = ""
             return jsonify({'offT': offTopic})
-    return "NO RESPONSE" #required return
+    return jsonify({}) #required return

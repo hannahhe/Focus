@@ -154,7 +154,13 @@ class App extends React.Component {
         fetch(url, {
           method: 'POST', //SHOVE TO SERVER
           body: blob,
-        });
+        })
+        .then(response => response.json())
+        .catch(error => console.error(error))
+        .then(response => {
+          this.state.onTopic = response.offT;
+        })
+        .catch();
       };
       recorder.startRecording();
       setInterval(() => { recorder.finishRecording(); recorder.startRecording();}, 5000);
@@ -164,7 +170,8 @@ class App extends React.Component {
     });
   }
   render() {
-    const { selectedOption } = this.state;
+    const { selectedOption, onTopic } = this.state;
+    this.state.onTopic = "on";
     return (
       <div className="App">
         <img src={'../../static/img/1.png'}/>
@@ -179,6 +186,7 @@ class App extends React.Component {
           {selectedOption != null ?
             <RecordButton />:"" }
         </div>
+        <p>You're {this.state.onTopic ? "on" : "off"} topic.</p>
       </div>
     );
   }
