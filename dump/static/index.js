@@ -16,7 +16,8 @@ navigator.mediaDevices.getUserMedia({ //get access to user's microphone/cam
     });
   };
   recorder.startRecording();
-  setTimeout(() => { recorder.finishRecording(); }, 2000); //set how long it's recording
+  setInterval(() => { recorder.finishRecording(); recorder.startRecording();}, 5000);
+  //setTimeout(() => { recorder.finishRecording(); }, 2000); //set how long it's recording
 }).catch((err) => {
   console.log("There was an error", err); //WHAT HAPPENS WHEN YOU'RE MICLESS?
 });
