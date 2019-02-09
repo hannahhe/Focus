@@ -20,11 +20,15 @@ def isOffTopic(idealTopic, text):
     d = dict()
     for category in categories:
         d[category.name] = category.confidence
+        if category.name == idealTopic:
+            return False
         print(u'=' * 20)
         print(u'{:<16}: {}'.format('name', category.name))
         print(u'{:<16}: {}'.format('confidence', category.confidence))
-    print(d)
-    return len(d) > 1 and d[idealTopic] < 0.8
+    return True
+    #print(d)
+    #cut = dict((k,v) for k, v in d.items() if v > 0.8)
+    #return len(cut) > 1
     # #All Notable Topics Discussed
     # cut = dict((k,v) for k, v in d.items() if v > 0.8)
     # #All Topics that were off Topic
