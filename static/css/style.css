@@ -1,0 +1,12 @@
+.title {
+  text-align: center;
+  font-family: 'Comfortaa', cursive;
+}
+body{
+  font-family: 'Muli', sans-serif;
+}
+.footer{
+  text-align: center;
+}
+.container {
+  max-width: 800px; }
