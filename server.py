@@ -10,14 +10,16 @@ app = Flask(__name__)
 def hello():
     return render_template('./public/index.html')
 
-@app.route("/processaudio", methods=['PUT'])
+@app.route("/processaudio", methods=['PUT', 'POST'])
 def process():
-    print(dict(request.form))
-    data = dict(request.form)["audio"]
-    for i in data:
-        print(i)
-    print("data: "+str(data))
-    transcribe_file(data)
+    print(type(request.data))
+    print(len(request.data))
+
+    #data = dict(request.data)["audio"]
+    #for i in data:
+    #    print(i)
+    #print("data: "+str(data))
+    transcribe_file(request.data)
     #requests.put("https://speech.googleapis.com/v1/speech:longrunningrecognize", data)
     return ""
 
