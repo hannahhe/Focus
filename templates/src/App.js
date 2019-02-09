@@ -32,7 +32,7 @@ export class UserInput extends React.Component {
     console.log('input text', text);
     this.state.formData.set('Text', this.state.text);
   }
-  /*sendTextInfo = () => {
+  sendTextInfo = () => {
     fetch('/text', { //http put request
       method: 'PUT',
       body: this.state.formData
@@ -44,8 +44,8 @@ export class UserInput extends React.Component {
       //console.log(this.state.laTeX);
       //console.log(this.state);
       this.forceUpdate();
-    }); //if the json is valid*/
-  //}
+    //}); //if the json is valid
+  }
 
 
   render() {
