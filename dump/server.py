@@ -1,0 +1,33 @@
+from flask import Flask, render_template, request, redirect, url_for
+from google.cloud import speech
+from google.cloud.speech import enums
+from google.cloud.speech import types
+
+# instantiates a client
+client = speech.SpeechClient()
+
+# app configuration
+app = Flask(__name__)
+app.debug = False
+PORT = 8080
+
+# routing
+@app.route("/")
+def homePage():
+    return render_template("index.html")
+
+@app.route("/speechdata", methods=["POST"])
+def speechdata():
+    config = types.RecognitionConfig(
+        encoding=enums.RecognitionConfig.AudioEncoding.LINEAR16,
+        language_code='en-US')
+    audio = types.RecognitionAudio(content = request.data)
+    response = client.recognize(config, audio)
+
+    for result in response.results:
+        print('Transcript: {}'.format(result.alternatives[0].transcript))
+    return "NO RESPONSE"
+
+# start the app if we're directly running this file
+if __name__ == "__main__":
+    app.run(host = "0.0.0.0", port = PORT)
