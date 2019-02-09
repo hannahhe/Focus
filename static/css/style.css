@@ -12,6 +12,11 @@ body{
   font-size: 20pt;
   font-family: 'Quicksand', sans-serif;
 }
+.smallText{
+  color: #FFD983;
+  font-size: 16px;
+  font-family: 'Quicksand', sans-serif;
+}
 .footer{
   text-align: center;
 }
