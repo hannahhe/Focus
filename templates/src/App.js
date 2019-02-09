@@ -3,9 +3,9 @@ import $ from "jquery";
 
 import React from "react";
 import ReactDOM from "react-dom";
-import Clipboard from "clipboard";
+//import Clipboard from "clipboard";
 import "./WebAudioRecorder.min.js";
-
+import { scaryAnimals } from "./categories";
 import { Dropdown, Button, NavItem, Modal, Row, Col, Input } from "react-materialize";
 
 class UserInput extends React.Component {
