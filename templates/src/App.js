@@ -120,12 +120,21 @@ class App extends React.Component {
   }
   handleChange = (selectedOption) => {
     this.setState(state => ({
-      isRecording: false,
-      text: "start"
+      selectedOption: selectedOption.label
     }));
-    this.setState(state => ({
-      selectedOption: selectedOption
-    }));
+    var option = new FormData();
+    option.set('cat', selectedOption.label);
+    fetch('/cat', { //http put request
+      method: 'POST',
+      body: option
+    })
+    .then(response => {
+      //this.state.cat = response.offT;
+      //console.log(this.state.cat);
+      //console.log(this.state);
+      this.forceUpdate();
+    })
+    .catch(error => console.error(error)); //if the json is valid
     console.log(`Option selected:`, selectedOption.label);
 
   }
@@ -159,10 +168,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <img src={'../../static/img/1.png'}/>
-        <Row>
-
-
-          <ul>
+        <Row><ul>
           <li className = "topicText">What do you want to talk about?</li>
           </ul>
           <Select value={selectedOption}
