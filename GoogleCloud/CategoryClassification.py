@@ -1,10 +1,11 @@
 import six
+#import Collections
 from google.cloud import language
 from google.cloud.language import enums
 from google.cloud.language import types
-text1 = "seaweed puffer fish sharks whales seahorses swimming through the water. submarines exploring plankton. Something fish swim bubbles i go to the beach ocean things she sells sea shells by the seashore spongebob patrick the star barnacle boy"
+text1 = "seaweed puffer fish sharks whales i like hobbies and leisure seahorses swimming through the water. submarines exploring plankton. Something fish swim bubbles i go to the beach ocean things she sells sea shells by the seashore spongebob patrick the star barnacle boy"
 
-def analyze(text):
+def isOffTopic(idealTopic, text):
     client = language.LanguageServiceClient()
 
     if isinstance(text, six.binary_type):
@@ -15,13 +16,26 @@ def analyze(text):
             type=enums.Document.Type.PLAIN_TEXT)
 
     categories = client.classify_text(document).categories
-
+    d = dict()
     for category in categories:
-            print(u'=' * 20)
-            print(u'{:<16}: {}'.format('name', category.name))
-            print(u'{:<16}: {}'.format('confidence', category.confidence))
+        d[category.name] = category.confidence
+        print(u'=' * 20)
+        print(u'{:<16}: {}'.format('name', category.name))
+        print(u'{:<16}: {}'.format('confidence', category.confidence))
+    #All Notable Topics Discussed
+    cut = dict((k,v) for k, v in d.items() if v > 0.8)
+    #All Topics that were off Topic
+    offTopic = dict((k,v) for k, v in cut.items() if k != idealTopic)
+    
+    return len(offTopic) > 1 and cut[idealTopic] == 0 
 
-def classify_file(gcs_uri):
+    #print(offTopic)
+    #print(cut[idealTopic])
+    #return len(offTopic) == 1 and cut[idealTopic] != 0 
+
+#print(isOffTopic("/Hobbies & Leisure",text1))
+
+def classify_file(idealTopic, gcs_uri):
     """Classifies content categories of the text in a Google Cloud Storage
     file.
     """
@@ -32,8 +46,18 @@ def classify_file(gcs_uri):
         type=enums.Document.Type.PLAIN_TEXT)
 
     categories = client.classify_text(document).categories
-
+    
+    d = dict()
     for category in categories:
+        d[category.name] = category.confidence
         print(u'=' * 20)
         print(u'{:<16}: {}'.format('name', category.name))
         print(u'{:<16}: {}'.format('confidence', category.confidence))
+
+    #All Notable Topics Discussed
+    cut = dict((k,v) for k, v in d.items() if v > 0.8)
+    #All Topics that were off Topic
+    offTopic = dict((k,v) for k, v in cut.items() if k != idealTopic)
+    return offTopic
+
+
