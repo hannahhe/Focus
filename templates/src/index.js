@@ -1,13 +1,12 @@
-import "babel-polyfill";
+//import "babel-polyfill";
 import $ from "jquery";
 
-import React from "react";
+import React from 'react';
 import ReactDOM from "react-dom";
-import Clipboard from "clipboard";
+import App from './App';
+//import Clipboard from "clipboard";
 
-import { Dropdown, Button, NavItem, Modal, Row, Col, Input } from "react-materialize";
-
-import Hannah from "./hannah";
+//import { Dropdown, Button, NavItem, Modal, Row, Col, Input } from "react-materialize";
 
 /*
 // uncool way to do it
@@ -20,7 +19,7 @@ const Blurb = () => {
   return <p>Welcome! Blah blah</p>;
 }
 */
-const clipboardRef = elem => {
+/*const clipboardRef = elem => {
   if (elem) { new Clipboard(elem) }
 };
 
@@ -28,9 +27,33 @@ const Welcome = () => ( //make welcome blurb
   <p>Welcome!</p>
 );
 
+class RecordButton extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.state = {isRecording: false};
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState(state => ({
+      isRecording: !state.isRecording
+    }));
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick()}>
+        Press to start recording.
+      </button>
+    );
+  }
+}
 
 
-class UserInput extends React.Component {
+
+/*class UserInput extends React.Component {
   //define constructor here
   constructor(props) {
     super(props);
@@ -185,21 +208,22 @@ class UserInput extends React.Component {
       </div>
     );
   }
-}
+}*/
 
 
 /*  */
 $(document).ready(() => {
-  ReactDOM.render(
+  ReactDOM.render(<App />, document.getElementById('root'));
+  /*ReactDOM.render(
     <div>
       <h1 className='title'>\Graphikz[ ]</h1>
       <Welcome />
-      <UserInput />
+      <RecordButton />
       <footer className = 'footer'> By Hannah He </footer>
     </div>,
       //<Hannah number={1} />
       //<Hannah number={2} />
     //</div>,
     document.getElementById("root")
-  );
+  );*/
 });
