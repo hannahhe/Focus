@@ -1,9 +1,16 @@
 .title {
   text-align: center;
-  font-family: 'Comfortaa', cursive;
+  font-family: 'Quicksand', sans-serif;
 }
 body{
   font-family: 'Muli', sans-serif;
+  background-color: #4D6A9B;
+  /*color: #FFD983;*/
+}
+.topicText{
+  color: #FFD983;
+  font-size: 20pt;
+  font-family: 'Quicksand', sans-serif;
 }
 .footer{
   text-align: center;

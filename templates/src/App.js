@@ -106,7 +106,7 @@ class App extends Component {
 
 
           <ul>
-          <li>Find your topic category...</li>
+          <li class = "topicText">What do you want to talk about?</li>
           </ul>
           <Select value={selectedOption}
             onChange={this.handleChange}
