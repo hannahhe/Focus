@@ -6,8 +6,8 @@
   "scripts": {
     "build": "webpack -p",
     "watch": "webpack -d --watch",
-    "dev": "nodemon index.js",
-    "start": "node index.js"
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
@@ -34,7 +34,9 @@
     "lodash": "^4.17.11",
     "mongoose": "^5.3.3",
     "randomatic": "^3.1.0",
-    "sshpk": "^1.15.1"
+    "react-mic": "^12.4.1",
+    "sshpk": "^1.15.1",
+    "webpack-cli": "^3.2.3"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
