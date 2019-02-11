@@ -11,19 +11,19 @@ Stay on task. Focus on what matters to you. **Hocus, focus, pocus!**
 
 ## Running Focus
 
-Make sure you have the environment variable `FLASK_APP=server.py`. On one terminal window, enter 
+Make sure you have the environment variable `FLASK_APP=server.py`. On one terminal window, navigate to the outer Focus folder and enter
 
 ```
-python -m flask run
+$ python -m flask run
 ```
 
-then open up another window and run
+Then open up another window, navigate to the templates folder, and run
 
 ```
-npm run watch
+$ npm run watch
 ```
 
-then go to the URL printed to access the web app.
+Finally, go to the URL printed to access the web app.
 
 
 ## Development Process & Inspiration
