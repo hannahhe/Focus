@@ -1,6 +1,6 @@
 ![alt text](https://github.com/hannahhe/Focus/blob/master/static/img/5.png "Focus")
 
-# Focus
+# FOCUS
 Focus is a web-app designed to keep you on topic in your conversations - with the click of a button, our machine learning algorithms will monitor your conversation and gently notify you when your discussion gets sidetracked.
 
 Our project uses the Google Cloud Speech-to-Text API and the Cloud Natural Language API to analyze your verbal conversation and run it through some sentiment analysis and category classification algorithms. We receive user input on what topic you want to discuss from over 600 categories, then periodically check whether or not your discussion is staying on topic. If we think that you may be straying from the original topic you wished to discuss, our app will remind you to stay focused.
